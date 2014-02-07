@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0345FD2A-1FB3-4DC7-8546-A4347A219545}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Unify.Server.App</RootNamespace>
+    <AssemblyName>Unify.Server.App</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Unify.Server.ConApp.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Unify.Entities\Unify.Entities.csproj">
+      <Project>{39af1530-5dc4-4c0e-bb79-a11afa8c1dd8}</Project>
+      <Name>Unify.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Messages\Unify.Messages.csproj">
+      <Project>{dff888ab-ae6b-4f2d-82d1-e7f7243e95c2}</Project>
+      <Name>Unify.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Network.Tcp\Unify.Network.Tcp.csproj">
+      <Project>{70788d70-29c4-49e4-942a-d4ca4815963f}</Project>
+      <Name>Unify.Network.Tcp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Network\Unify.Network.csproj">
+      <Project>{77eec2c1-c3ab-4424-a25d-82f691470cfb}</Project>
+      <Name>Unify.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Server.Modules\Unify.Server.Modules.csproj">
+      <Project>{7ba0268f-925c-4f45-8866-af8b5dc23205}</Project>
+      <Name>Unify.Server.Modules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Server\Unify.Server.csproj">
+      <Project>{f12b8277-30f4-4a26-be9b-54306d0e7caa}</Project>
+      <Name>Unify.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify\Unify.csproj">
+      <Project>{2e484762-a800-4148-a4b2-994fa9fa4cb3}</Project>
+      <Name>Unify</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
