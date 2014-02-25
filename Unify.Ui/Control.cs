@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unify.Util;
 using UnityEngine;
 
 namespace Unify.Ui
@@ -14,6 +15,11 @@ namespace Unify.Ui
     {
 
     }
+
+    public event GenericVoidDelegate<int> OnMouseButtonPressed;
+    public event GenericVoidDelegate<int> OnMouseButtonUp;
+    public event GenericVoidDelegate<int> OnMouseButtonDown;
+    public event GenericVoidDelegate<IEnumerable<Touch>> OnTouch;
 
     void Start()
     {
@@ -222,6 +228,43 @@ namespace Unify.Ui
       }
       return false;
     }
+
+
+    internal void FireMouseButtonPressed(int button)
+    {
+      if (OnMouseButtonPressed != null)
+      {
+        OnMouseButtonPressed(button);
+      }
+    }
+    internal void FireMouseButtonUp(int button)
+    {
+      if (OnMouseButtonUp != null)
+      {
+        OnMouseButtonUp(button);
+      }
+    }
+    internal void FireMouseButtonDown(int button)
+    {
+      if (OnMouseButtonDown != null)
+      {
+        OnMouseButtonDown(button);
+      }
+    }
+    internal void FireTouch(IEnumerable<Touch> enumerable)
+    {
+      if (OnTouch != null)
+      {
+        OnTouch(enumerable);
+      }
+    }
+    public Rect GetRect()
+    {
+      return new Rect(ActualLeft, ActualTop, ActualWidth, ActualHeight);
+    }
+
+
+
   }
 }
 
