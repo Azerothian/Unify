@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unify.Ui.Util;
 using Unify.Util;
 using UnityEngine;
 
@@ -11,6 +12,18 @@ namespace Unify.Ui.Controls
   {
     public float TouchDistance = 0f;
     public int TouchCount = 0;
+
+    public float PreviousTouchDistance = 0f;
+
+    /// <summary>
+    /// [0] float - Diff
+    /// </summary>
+    public event GenericVoidDelegate<float> OnTouchExpand;
+    /// <summary>
+    /// [0] float - Diff
+    /// </summary>
+    public event GenericVoidDelegate<float> OnTouchShrink;
+
     public float TouchDistancePercentage
     {
       get
@@ -34,27 +47,47 @@ namespace Unify.Ui.Controls
       OnTouch += TouchPanel_OnTouch;
     }
 
-    void TouchPanel_OnTouch(IEnumerable<Touch> touches)
+    void TouchPanel_OnTouch(IEnumerable<TouchAssist> touches)
     {
+      var canceld = (from t in touches
+                     where t.Touch.phase == TouchPhase.Canceled && t.Touch.phase == TouchPhase.Ended
+                select t).Count();
+
+      if (canceld == touches.Count())
+      {
+        TouchDistance = 0;
+        PreviousTouchDistance = 0;
+        return;
+      }
+
       var activeTouches = from t in touches
-                   where (t.phase != TouchPhase.Canceled && t.phase != TouchPhase.Ended)
+                          where (t.Touch.phase != TouchPhase.Canceled && t.Touch.phase != TouchPhase.Ended)
                    select t;
       TouchCount = touches.Count();
-
       var dCount = 0;
       var d = 0f;
       foreach (var touch in activeTouches)
       {
         foreach (var touch2 in activeTouches)
         {
-          if (touch.position != touch2.position)
+          if (touch.Position != touch2.Position)
           {
             dCount++;
-            d += Vector2.Distance(touch.position, touch2.position);
+            d += Vector2.Distance(touch.Position, touch2.Position);
           }
         }
       }
       TouchDistance = d / dCount;
+      
+      if (TouchDistance > PreviousTouchDistance && OnTouchExpand != null)
+      {
+        OnTouchExpand(TouchDistance - PreviousTouchDistance);
+      }
+      if (TouchDistance < PreviousTouchDistance && OnTouchShrink != null)
+      {
+        OnTouchShrink(PreviousTouchDistance - TouchDistance);
+      }
+      PreviousTouchDistance = TouchDistance;
     }
 
     protected override void OnRender()
@@ -73,12 +106,5 @@ namespace Unify.Ui.Controls
       return false;
     }
 
-    void LateUpdate()
-    {
-      
-
-
-     
-    }
   }
 }

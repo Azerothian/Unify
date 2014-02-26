@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unify.Ui.Util;
 using Unify.Util;
 using UnityEngine;
 
@@ -12,8 +13,10 @@ namespace Unify.Ui
     public static UiManager Context = null;
     public List<Control> RegisteredControls = new List<Control>();
 
-    public int MouseButtonScan = 3;
+    public Dictionary<int, TouchAssist> _touchAssists = new Dictionary<int, TouchAssist>();
 
+    public int MouseButtonScan = 3;
+    public bool DisableMouse = false;
     //public GenericVoidDelegate<Vector2,  OnClickPressed;
 
     public UiManager() : base()
@@ -33,7 +36,7 @@ namespace Unify.Ui
     }
     void Update()
     {
-      if (Input.mousePresent)
+      if (!DisableMouse && Input.mousePresent)
       {
         for (var i = 0; i <= MouseButtonScan; i++)
         {
@@ -54,11 +57,18 @@ namespace Unify.Ui
       if (Input.touchCount > 0)
       {
         //var arr = from v in Input.touches select v.position;
-        var events = new Dictionary<Control, IEnumerable<Touch>>();
+        var events = new Dictionary<Control, IEnumerable<TouchAssist>>();
         var rcons = RegisteredControls.ToArray();
-
-        foreach (var t in Input.touches)
+        for(var i = 0; i < Input.touchCount; i ++)
         {
+          var t = Input.GetTouch(i);
+          if (!_touchAssists.ContainsKey(t.fingerId))
+          {
+            Debug.Log("Adding new Touch");
+            _touchAssists.Add(t.fingerId, new TouchAssist());
+          }
+          var touchAssist = _touchAssists[t.fingerId];
+          touchAssist.Update(t);
           var controls = from v in rcons
                          let uiPosition = new Vector2(t.position.x, Screen.height - t.position.y)
                          where v.GetRect().Contains(uiPosition)
@@ -67,11 +77,11 @@ namespace Unify.Ui
           {
             if (!events.ContainsKey(c))
             {
-              events.Add(c, new[] { t });
+              events.Add(c, new[] { touchAssist });
             }
             else
             {
-              events[c] = new[] { t }.Concat(events[c]);
+              events[c] = new[] { touchAssist }.Concat(events[c]);
             }
           }
         }
@@ -91,11 +101,11 @@ namespace Unify.Ui
         var rect = v.GetRect();
         if (rect.Contains(position))
         {
-          Debug.Log(new {  mouse = position, realPos = Input.mousePosition, rect = rect, ActualLeft = v.ActualLeft, ActualTop = v.ActualTop });
+          //Debug.Log(new {  mouse = position, realPos = Input.mousePosition, rect = rect, ActualLeft = v.ActualLeft, ActualTop = v.ActualTop });
           controls.Add(v);
         }
       }
-      Debug.Log("Control Count  " + controls.Count());
+      //Debug.Log("Control Count  " + controls.Count());
       foreach (var c in controls)
       {
         switch (status)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unify.Ui.Util;
 using Unify.Util;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Unify.Ui
     public event GenericVoidDelegate<int> OnMouseButtonPressed;
     public event GenericVoidDelegate<int> OnMouseButtonUp;
     public event GenericVoidDelegate<int> OnMouseButtonDown;
-    public event GenericVoidDelegate<IEnumerable<Touch>> OnTouch;
+    public event GenericVoidDelegate<IEnumerable<TouchAssist>> OnTouch;
 
     void Start()
     {
@@ -164,6 +165,13 @@ namespace Unify.Ui
       return width;
     }
 
+    public bool IsMouseOver
+    {
+      get
+      {
+        return GetRect().Contains(new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y));
+      }
+    }
 
     public void AddChild(Control child)
     {
@@ -251,7 +259,7 @@ namespace Unify.Ui
         OnMouseButtonDown(button);
       }
     }
-    internal void FireTouch(IEnumerable<Touch> enumerable)
+    internal void FireTouch(IEnumerable<TouchAssist> enumerable)
     {
       if (OnTouch != null)
       {
