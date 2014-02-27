@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Unify.Client.Modules\Unify.Client.Modules.csproj">
+      <Project>{a6f02529-3fb3-4d4d-8863-459812040e05}</Project>
+      <Name>Unify.Client.Modules</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unify.Client\Unify.Client.csproj">
       <Project>{7ab7516a-8b35-4b10-afef-52ad87fcfe53}</Project>
       <Name>Unify.Client</Name>

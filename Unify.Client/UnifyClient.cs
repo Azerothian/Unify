@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Unify.Client.Interfaces;
-using Unify.Messages.NickServ;
 using Unify.Network;
 using Unify.Network.Serialiser;
 using Unify.Network.Tcp;

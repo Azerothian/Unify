@@ -83,6 +83,15 @@ namespace Unify.Server
           m.Start();
         }
       }
-			
+
+
+      public void Stop()
+      {
+        foreach (var m in Modules)
+        {
+          Log.Info("[UnifyServer] [Stop] " + m.GetType().ToString());
+          m.Stop();
+        }
+      }
     }
 }

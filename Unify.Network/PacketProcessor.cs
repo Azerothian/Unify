@@ -18,7 +18,7 @@ namespace Unify.Network
 		Queue<byte[]> _dataToWrite = new Queue<byte[]>();
 		public PacketProcessor()
 		{
-			ThreadSleep = 100;
+			ThreadSleep = 2;
 		}
 		public void Write(byte[] data)
 		{

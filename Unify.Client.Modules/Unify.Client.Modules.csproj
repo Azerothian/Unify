@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AB7516A-8B35-4B10-AFEF-52AD87FCFE53}</ProjectGuid>
+    <ProjectGuid>{A6F02529-3FB3-4D4D-8863-459812040E05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unify.Client</RootNamespace>
-    <AssemblyName>Unify.Client</AssemblyName>
+    <RootNamespace>Unify.Client.Modules</RootNamespace>
+    <AssemblyName>Unify.Client.Modules</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,14 +38,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IModule.cs" />
-    <Compile Include="UnifyClient.cs" />
+    <Compile Include="Chat\Channel.cs" />
+    <Compile Include="Chat\ChatModule.cs" />
+    <Compile Include="Entities\EntityModule.cs" />
+    <Compile Include="NickServ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Unify.Network.Tcp\Unify.Network.Tcp.csproj">
-      <Project>{70788d70-29c4-49e4-942a-d4ca4815963f}</Project>
-      <Name>Unify.Network.Tcp</Name>
+    <ProjectReference Include="..\Unify.Client\Unify.Client.csproj">
+      <Project>{7ab7516a-8b35-4b10-afef-52ad87fcfe53}</Project>
+      <Name>Unify.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Messages\Unify.Messages.csproj">
+      <Project>{dff888ab-ae6b-4f2d-82d1-e7f7243e95c2}</Project>
+      <Name>Unify.Messages</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unify.Network\Unify.Network.csproj">
       <Project>{77eec2c1-c3ab-4424-a25d-82f691470cfb}</Project>
@@ -56,7 +62,6 @@
       <Name>Unify</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
