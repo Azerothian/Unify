@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Unify.Ui.Util;
@@ -17,10 +18,10 @@ namespace Unify.Ui
 
     }
 
-    public event GenericVoidDelegate<int> OnMouseButtonPressed;
-    public event GenericVoidDelegate<int> OnMouseButtonUp;
-    public event GenericVoidDelegate<int> OnMouseButtonDown;
-    public event GenericVoidDelegate<IEnumerable<TouchAssist>> OnTouch;
+    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonPressed;
+    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonUp;
+    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonDown;
+    public event GenericVoidDelegate<IEnumerable<TouchAssist>, CancelEventArgs> OnTouch;
 
     void Start()
     {
@@ -238,39 +239,59 @@ namespace Unify.Ui
     }
 
 
-    internal void FireMouseButtonPressed(int button)
+    internal bool FireMouseButtonPressed(int button)
     {
       if (OnMouseButtonPressed != null)
       {
-        OnMouseButtonPressed(button);
+        CancelEventArgs ev = new CancelEventArgs(false);
+        OnMouseButtonPressed(button, ev);
+        return ev.Cancel;
       }
+      return false;
     }
-    internal void FireMouseButtonUp(int button)
+    internal bool FireMouseButtonUp(int button)
     {
       if (OnMouseButtonUp != null)
       {
-        OnMouseButtonUp(button);
+        CancelEventArgs ev = new CancelEventArgs(false);
+        OnMouseButtonUp(button, ev);
+        return ev.Cancel;
       }
+      return false;
     }
-    internal void FireMouseButtonDown(int button)
+    internal bool FireMouseButtonDown(int button)
     {
       if (OnMouseButtonDown != null)
       {
-        OnMouseButtonDown(button);
+        CancelEventArgs ev = new CancelEventArgs(false);
+        OnMouseButtonDown(button, ev);
+        return ev.Cancel;
       }
+      return false;
     }
-    internal void FireTouch(IEnumerable<TouchAssist> enumerable)
+    internal bool FireTouch(IEnumerable<TouchAssist> enumerable)
     {
       if (OnTouch != null)
       {
-        OnTouch(enumerable);
+        CancelEventArgs ev = new CancelEventArgs(false);
+        OnTouch(enumerable, ev);
+        return ev.Cancel;
       }
+      return false;
     }
     public Rect GetRect()
     {
       return new Rect(ActualLeft, ActualTop, ActualWidth, ActualHeight);
     }
-
+    public static void Log(string message, params object[] contexts)
+    {
+      Debug.Log(string.Format("--- {0} ", message));
+      foreach (var v in contexts)
+      {
+        Debug.Log(v.ToString());
+      }
+      Debug.Log("======");
+    }
 
 
   }

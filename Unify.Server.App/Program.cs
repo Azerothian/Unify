@@ -21,6 +21,7 @@ namespace Unify.Server.ConApp
 		}
 		static void Main(string[] args)
 		{
+
 			Log.OnLog += Log_OnLog;
 			NetworkServer _netServer = new NetworkServer();
 			_netServer.SetSerialiser<BinarySerialiser>();

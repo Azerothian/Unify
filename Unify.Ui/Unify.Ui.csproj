@@ -49,6 +49,7 @@
     <Compile Include="Control.cs" />
     <Compile Include="Controls\Box.cs" />
     <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\DragnDrop.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\List.cs" />
     <Compile Include="Controls\Textbox.cs" />

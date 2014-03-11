@@ -13,11 +13,15 @@ namespace Unify.Ui
     public static UiManager Context = null;
     public List<Control> RegisteredControls = new List<Control>();
 
+    public Control[] GetOrderedControls()
+    {
+        return RegisteredControls.OrderBy(p => p.zIndex).ToArray();
+    }
     public Dictionary<int, TouchAssist> _touchAssists = new Dictionary<int, TouchAssist>();
 
     public int MouseButtonScan = 3;
     public bool DisableMouse = false;
-    //public GenericVoidDelegate<Vector2,  OnClickPressed;
+    public bool DisableTouch = false;
 
     public UiManager() : base()
     {
@@ -26,7 +30,8 @@ namespace Unify.Ui
 
     void OnGUI()
     {
-      foreach (var c in RegisteredControls.OrderBy(p=>p.zIndex))
+      var controls = GetOrderedControls();
+      foreach (var c in controls)
       {
         if (c.enabled && c.Parent == null)
         {
@@ -36,6 +41,7 @@ namespace Unify.Ui
     }
     void Update()
     {
+      
       if (!DisableMouse && Input.mousePresent)
       {
         for (var i = 0; i <= MouseButtonScan; i++)
@@ -54,9 +60,8 @@ namespace Unify.Ui
           }
         }
       }
-      if (Input.touchCount > 0)
+      if (!DisableTouch && Input.touchCount > 0)
       {
-        //var arr = from v in Input.touches select v.position;
         var events = new Dictionary<Control, IEnumerable<TouchAssist>>();
         var rcons = RegisteredControls.ToArray();
         for(var i = 0; i < Input.touchCount; i ++)
@@ -64,7 +69,6 @@ namespace Unify.Ui
           var t = Input.GetTouch(i);
           if (!_touchAssists.ContainsKey(t.fingerId))
           {
-            Debug.Log("Adding new Touch");
             _touchAssists.Add(t.fingerId, new TouchAssist());
           }
           var touchAssist = _touchAssists[t.fingerId];
@@ -87,13 +91,14 @@ namespace Unify.Ui
         }
         foreach (var c in events.Keys)
         {
-          c.FireTouch(events[c]);
+          if (c.FireTouch(events[c]))
+            return;
         }
       }
     }
     void FireMouse(MouseButtonStatus status, int i)
     {
-      var regControls  =RegisteredControls.ToArray();
+      var regControls = GetOrderedControls();
       var controls = new List<Control>();
       foreach (var v in regControls)
       {
@@ -101,23 +106,24 @@ namespace Unify.Ui
         var rect = v.GetRect();
         if (rect.Contains(position))
         {
-          //Debug.Log(new {  mouse = position, realPos = Input.mousePosition, rect = rect, ActualLeft = v.ActualLeft, ActualTop = v.ActualTop });
           controls.Add(v);
         }
       }
-      //Debug.Log("Control Count  " + controls.Count());
       foreach (var c in controls)
       {
         switch (status)
         {
           case MouseButtonStatus.Pressed:
-            c.FireMouseButtonPressed(i);
+            if (c.FireMouseButtonPressed(i))
+              return;
             break;
           case MouseButtonStatus.Up:
-            c.FireMouseButtonUp(i);
+            if (c.FireMouseButtonUp(i))
+              return;
             break;
           case MouseButtonStatus.Down:
-            c.FireMouseButtonDown(i);
+            if (c.FireMouseButtonDown(i))
+              return;
             break;
         }
         

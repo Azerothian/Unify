@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Unify.Ui.Util;
@@ -10,6 +11,11 @@ namespace Unify.Ui.Controls
 {
   public class TouchPanel : Control
   {
+    public TouchPanel() : base()
+    {
+      OnTouch += TouchPanel_OnTouch;
+    }
+
     public float TouchDistance = 0f;
     public int TouchCount = 0;
 
@@ -42,12 +48,7 @@ namespace Unify.Ui.Controls
 
     //public GenericVoidDelegate OnTouch;
 
-    protected override void OnStart()
-    {
-      OnTouch += TouchPanel_OnTouch;
-    }
-
-    void TouchPanel_OnTouch(IEnumerable<TouchAssist> touches)
+    void TouchPanel_OnTouch(IEnumerable<TouchAssist> touches, CancelEventArgs cea )
     {
       var canceld = (from t in touches
                      where t.Touch.phase == TouchPhase.Canceled && t.Touch.phase == TouchPhase.Ended
