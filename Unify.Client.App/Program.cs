@@ -33,8 +33,22 @@ namespace Unify.Client.App
       Log.Info("Connecting to the Server...");
       NetworkConnection networkClient = new NetworkConnection();
       networkClient.SetSerialiser<JsonSerialiser>();
-      networkClient.AddNetworkClient<WSClient>();
-      //networkClient.AddNetworkClient<TcpClient>();
+      Console.WriteLine("1. TCP");
+      Console.WriteLine("2. WS");
+      var uri = "";
+      switch(Console.ReadKey().Key)
+      {
+        case ConsoleKey.D1:
+          networkClient.AddNetworkClient<TcpClient>();
+          uri = "tcp://127.0.0.1:6322/";
+          break;
+        case ConsoleKey.D2:
+          networkClient.AddNetworkClient<WSClient>();
+          uri = "ws://127.0.0.1:6321/";
+          break;
+      }
+
+      //
 
       var nickServ = new NicknameModule();
       var chatModule = new ChatModule();
@@ -70,7 +84,7 @@ namespace Unify.Client.App
         chatModule.Username = nickServ.Username;
       };
 
-      networkClient.Connect(new Uri("ws://127.0.0.1:6321/"));
+      networkClient.Connect(new Uri(uri));
       
       do
       {

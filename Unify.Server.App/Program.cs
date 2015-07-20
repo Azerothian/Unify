@@ -39,7 +39,7 @@ namespace Unify.Server.ConApp
       //_server.SetCache<InternalCache>();
 
       _server.Start();
-      //_netServer.StartServer<TcpServer>(new Uri("tcp://0.0.0.0:6321"));
+      _netServer.StartServer<TcpServer>(new Uri("tcp://0.0.0.0:6322"));
       _netServer.StartServer<WSServer>(new Uri("ws://127.0.0.1:6321"));
       Console.WriteLine("Press the enter key to quit..");
       Console.ReadLine();
