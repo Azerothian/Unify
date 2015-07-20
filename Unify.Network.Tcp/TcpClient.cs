@@ -10,202 +10,201 @@ using Unify.Util;
 
 namespace Unify.Network.Tcp
 {
-	public class TcpClient : INetworkConnectionModule
-	{
-		public event GenericVoidDelegate OnConnectedEvent;
-		public event GenericVoidDelegate<byte[]> OnDataReceive;
-		public event GenericVoidDelegate<int> OnDataSentEvent;
-		public event GenericVoidDelegate OnDisconnectingEvent;
-		public event GenericVoidDelegate OnDisconnectedEvent;
+  public class TcpClient : INetworkConnectionModule
+  {
+    public event Action OnConnectedEvent;
+    public event Action<byte[]> OnDataReceive;
+    public event Action<int> OnDataSentEvent;
+    public event Action OnDisconnectingEvent;
+    public event Action OnDisconnectedEvent;
 
-		private const int receiveBufferSize = 1024;
-		private Socket _socket;
+    private const int receiveBufferSize = 1024;
+    private Socket _socket;
 
-		public bool IsDisconnected { get; set; }
-
-
-		public TcpClient()
-		{
-
-		}
-		public TcpClient(Socket client)
-		{
-			_socket = client;
-			BeginReceive();
-		}
-		public void Connect(string IpAddress, int Port)
-		{
-			IPEndPoint ipep = new IPEndPoint(
-			IPAddress.Parse(IpAddress), Port);
-
-			_socket = new Socket(AddressFamily.InterNetwork,
-							 SocketType.Stream, ProtocolType.Tcp);
-			_socket.NoDelay = true;
-			IsDisconnected = false;
-			_socket.BeginConnect(ipep, EndConnect, _socket);
-		}
+    public bool IsDisconnected { get; set; }
 
 
-		public void Disconnect()
-		{
-			FireDisconnect();
-		}
+    public TcpClient()
+    {
 
-		#region Callbacks
-		private void EndConnect(IAsyncResult ar)
-		{
-			try
-			{
-				// Retrieve the socket from the state object.
-				Socket server = (Socket)ar.AsyncState;
+    }
+    public TcpClient(Socket client)
+    {
+      _socket = client;
+      BeginReceive();
+    }
+    public void Connect(Uri uri)
+    {
+      IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(uri.Host), uri.Port);
 
-				// Complete the connection.
-				server.EndConnect(ar);
-
-				// Signal that the connection has been made.
-				if (OnConnectedEvent != null)
-				{
-					OnConnectedEvent();
-				}
-				BeginReceive();
-			}
-			catch (Exception e)
-			{
-				Log.Critical(e.ToString(), e, this);
-			}
-		}
-		private void BeginReceive()
-		{
-			try
-			{
-				// Begin receiving the data from the remote device.
-				StateObject state = new StateObject(receiveBufferSize);
-				state.ServerSocket = _socket;
-				SocketError err;
-				_socket.BeginReceive(state.Buffer, 0, receiveBufferSize, SocketFlags.None, out err, EndReceive, state);
-				//LogManager.Info("SocketError {0}", err);
-			}
-			catch (Exception e)
-			{
-
-				Log.Critical(e.ToString(), e, this);
-
-			}
-		}
-		private void EndReceive(IAsyncResult ar)
-		{
-			if (!IsDisconnected)
-			{
-				try
-				{
-
-					// Retrieve the state object and the client socket 
-					// from the asynchronous state object.
-					StateObject state = (StateObject)ar.AsyncState;
-
-					if (!state.ServerSocket.Connected)
-						return;
+      _socket = new Socket(AddressFamily.InterNetwork,
+               SocketType.Stream, ProtocolType.Tcp);
+      _socket.NoDelay = true;
+      IsDisconnected = false;
+      _socket.BeginConnect(ipep, EndConnect, _socket);
+    }
 
 
-					Socket client = state.ServerSocket;
+    public void Disconnect()
+    {
+      FireDisconnect();
+    }
 
-					// Read data from the remote device.
-					int bytesRead = -1;
-					//	if (client.Connected)
-					//	{
-					bytesRead = client.EndReceive(ar);
+    #region Callbacks
+    private void EndConnect(IAsyncResult ar)
+    {
+      try
+      {
+        // Retrieve the socket from the state object.
+        Socket server = (Socket)ar.AsyncState;
 
-					if (bytesRead > 0)
-					{
-						//LogManager.Info("EndReceive {0}", bytesRead);
-						var data = new byte[bytesRead];
+        // Complete the connection.
+        server.EndConnect(ar);
 
-						Buffer.BlockCopy(state.Buffer, 0, data, 0, bytesRead);
-						if (OnDataReceive != null)
-						{
-							OnDataReceive(data);
-						}
+        // Signal that the connection has been made.
+        if (OnConnectedEvent != null)
+        {
+          OnConnectedEvent();
+        }
+        BeginReceive();
+      }
+      catch (Exception e)
+      {
+        Log.Critical(e.ToString(), e, this);
+      }
+    }
+    private void BeginReceive()
+    {
+      try
+      {
+        // Begin receiving the data from the remote device.
+        StateObject state = new StateObject(receiveBufferSize);
+        state.ServerSocket = _socket;
+        SocketError err;
+        _socket.BeginReceive(state.Buffer, 0, receiveBufferSize, SocketFlags.None, out err, EndReceive, state);
+        //LogManager.Info("SocketError {0}", err);
+      }
+      catch (Exception e)
+      {
 
+        Log.Critical(e.ToString(), e, this);
 
-						client.BeginReceive(state.Buffer, 0, receiveBufferSize, 0, EndReceive, state);
-					}
-					else
-					{
-						FireDisconnect();
+      }
+    }
+    private void EndReceive(IAsyncResult ar)
+    {
+      if (!IsDisconnected)
+      {
+        try
+        {
 
-					}
-				}
-				catch (SocketException)
-				{
-					//LogManager.Critical(e.ToString());
-					FireDisconnect();
+          // Retrieve the state object and the client socket 
+          // from the asynchronous state object.
+          StateObject state = (StateObject)ar.AsyncState;
 
-				}
-				catch (ObjectDisposedException)
-				{
-					//LogManager.Critical(e.ToString());
-					FireDisconnect();
-				}
-
-			}
-		}
-
-		private void FireDisconnect()
-		{
-
-			if (!IsDisconnected)
-			{
-				if (_socket.Connected)
-				{
-					if (OnDisconnectingEvent != null)
-					{
-						OnDisconnectingEvent();
-					}
-					_socket.Shutdown(SocketShutdown.Both);
-					_socket.Close();
-				}
-
-				if (OnDisconnectedEvent != null)
-				{
-					OnDisconnectedEvent();
-				}
-
-				IsDisconnected = true;
-			}
-		}
-
-		#endregion
+          if (!state.ServerSocket.Connected)
+            return;
 
 
-		public void Send(byte[] data)
-		{
-			if (!IsDisconnected)
-			{
-				_socket.BeginSend(data, 0, data.Length, 0, EndSend, _socket);
-			}
+          Socket client = state.ServerSocket;
 
-		}
-		private void EndSend(IAsyncResult ar)
-		{
-			try
-			{
-				// Retrieve the socket from the state object.
-				Socket client = (Socket)ar.AsyncState;
+          // Read data from the remote device.
+          int bytesRead = -1;
+          //	if (client.Connected)
+          //	{
+          bytesRead = client.EndReceive(ar);
 
-				// Complete sending the data to the remote device.
-				int bytesSent = client.EndSend(ar);
-				//Fire sent event here
-				if (OnDataSentEvent != null)
-				{
-					OnDataSentEvent(bytesSent);
-				}
+          if (bytesRead > 0)
+          {
+            //LogManager.Info("EndReceive {0}", bytesRead);
+            var data = new byte[bytesRead];
 
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.ToString());
-			}
-		}
+            Buffer.BlockCopy(state.Buffer, 0, data, 0, bytesRead);
+            if (OnDataReceive != null)
+            {
+              OnDataReceive(data);
+            }
+
+
+            client.BeginReceive(state.Buffer, 0, receiveBufferSize, 0, EndReceive, state);
+          }
+          else
+          {
+            FireDisconnect();
+
+          }
+        }
+        catch (SocketException)
+        {
+          //LogManager.Critical(e.ToString());
+          FireDisconnect();
+
+        }
+        catch (ObjectDisposedException)
+        {
+          //LogManager.Critical(e.ToString());
+          FireDisconnect();
+        }
+
+      }
+    }
+
+    private void FireDisconnect()
+    {
+
+      if (!IsDisconnected)
+      {
+        if (_socket.Connected)
+        {
+          if (OnDisconnectingEvent != null)
+          {
+            OnDisconnectingEvent();
+          }
+          _socket.Shutdown(SocketShutdown.Both);
+          _socket.Close();
+        }
+
+        if (OnDisconnectedEvent != null)
+        {
+          OnDisconnectedEvent();
+        }
+
+        IsDisconnected = true;
+      }
+    }
+
+    #endregion
+
+
+    public void Send(byte[] data)
+    {
+      if (!IsDisconnected)
+      {
+        _socket.BeginSend(data, 0, data.Length, 0, EndSend, _socket);
+      }
+
+    }
+    private void EndSend(IAsyncResult ar)
+    {
+      try
+      {
+        // Retrieve the socket from the state object.
+        Socket client = (Socket)ar.AsyncState;
+
+        // Complete sending the data to the remote device.
+        int bytesSent = client.EndSend(ar);
+        //Fire sent event here
+        if (OnDataSentEvent != null)
+        {
+          OnDataSentEvent(bytesSent);
+        }
+
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+      }
+    }
 
 
     public string Key

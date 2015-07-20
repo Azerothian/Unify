@@ -10,6 +10,8 @@ using Unify.Messages.NickServ;
 using Unify.Network;
 using Unify.Network.Serialiser;
 using Unify.Network.Tcp;
+using Unify.Network.WebSockets;
+using Unify.Serialiser.Json;
 using Unify.Util;
 
 namespace Unify.Client.App
@@ -30,8 +32,9 @@ namespace Unify.Client.App
       var username = Console.ReadLine();
       Log.Info("Connecting to the Server...");
       NetworkConnection networkClient = new NetworkConnection();
-      networkClient.SetSerialiser<BinarySerialiser>();
-      networkClient.AddNetworkClient<TcpClient>();
+      networkClient.SetSerialiser<JsonSerialiser>();
+      networkClient.AddNetworkClient<WSClient>();
+      //networkClient.AddNetworkClient<TcpClient>();
 
       var nickServ = new NicknameModule();
       var chatModule = new ChatModule();
@@ -67,7 +70,7 @@ namespace Unify.Client.App
         chatModule.Username = nickServ.Username;
       };
 
-      networkClient.Connect("127.0.0.1", 6321);
+      networkClient.Connect(new Uri("ws://127.0.0.1:6321/"));
       
       do
       {

@@ -17,7 +17,7 @@ namespace Unify.Network.Http
 
 		HttpListener _listener;
 		public int SessionTimeout = 600;
-		public event GenericVoidDelegate<INetworkConnectionModule> OnClientConnected;
+		public event Action<INetworkConnectionModule> OnClientConnected;
 
 		public void StartListening(int port)
 		{

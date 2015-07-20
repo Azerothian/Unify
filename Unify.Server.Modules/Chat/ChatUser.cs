@@ -9,7 +9,7 @@ namespace Unify.Server.Modules.Chat
 {
   public class ChatUser
   {
-    public event GenericVoidDelegate<ChatUser> OnDisconnected;
+    public event Action<ChatUser> OnDisconnected;
     public string Username { get; set; }
     public NetworkConnection NetworkConnection { get; set; }
     public Channel Channel { get; set; }

@@ -9,15 +9,15 @@ namespace Unify.Network.Interfaces
 {
 	public interface INetworkConnectionModule
 	{
-		event GenericVoidDelegate OnConnectedEvent;
-		event GenericVoidDelegate<byte[]> OnDataReceive;
-		event GenericVoidDelegate<int> OnDataSentEvent;
-		event GenericVoidDelegate OnDisconnectingEvent;
-		event GenericVoidDelegate OnDisconnectedEvent;
+		event Action OnConnectedEvent;
+		event Action<byte[]> OnDataReceive;
+		event Action<int> OnDataSentEvent;
+		event Action OnDisconnectingEvent;
+		event Action OnDisconnectedEvent;
 
     string Key { get; }
 
-		void Connect(string ip, int port);
+		void Connect(Uri uri);
 		void Send(byte[] data);
 		void Disconnect();
 

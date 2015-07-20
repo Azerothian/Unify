@@ -12,9 +12,9 @@ namespace Unify.Client.Modules.Entities
 	public class EntityModule  : IModule
 	{
 
-		public event GenericVoidDelegate<EntityUpdate> OnEntityUpdate;
-		public event GenericVoidDelegate<EntityCreate> OnEntityCreate;
-		public event GenericVoidDelegate<EntityDelete> OnEntityDelete;
+		public event Action<EntityUpdate> OnEntityUpdate;
+		public event Action<EntityCreate> OnEntityCreate;
+		public event Action<EntityDelete> OnEntityDelete;
 		public UnifyClient UnifyClient {get;set;}
 		
 

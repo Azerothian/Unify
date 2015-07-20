@@ -12,16 +12,16 @@ namespace Unify.Network.Tcp
 	public class TcpServer : INetworkServerModule
 	{
 
-		public event GenericVoidDelegate<INetworkConnectionModule> OnClientConnected;
-		public event GenericVoidDelegate<INetworkConnectionModule> OnClientDisconnected;
+		public event Action<INetworkConnectionModule> OnClientConnected;
+		public event Action<INetworkConnectionModule> OnClientDisconnected;
 
 		private Dictionary<string, TcpClient> _clients = new Dictionary<string, TcpClient>();
 
 		private Socket server;
 
-		public void StartListening(int Port)
+		public void StartListening(Uri uri)
 		{
-			IPEndPoint ipep = new IPEndPoint(IPAddress.Any, Port);
+			IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(uri.Host), uri.Port);
 
 			server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			server.NoDelay = true;

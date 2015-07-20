@@ -13,7 +13,7 @@ namespace Unify.Network
 
 
 		private MemoryManager _dataStream = new MemoryManager();
-		public event GenericVoidDelegate<Packet> OnPacketFound;
+		public event Action<Packet> OnPacketFound;
 
 		Queue<byte[]> _dataToWrite = new Queue<byte[]>();
 		public PacketProcessor()

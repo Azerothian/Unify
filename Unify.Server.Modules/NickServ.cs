@@ -14,7 +14,7 @@ namespace Unify.Server.Modules
 
 			Dictionary<Guid, string> Usernames = new Dictionary<Guid, string>();
 
-      public event GenericVoidDelegate<string, NetworkConnection> OnUserLoggedIn;
+      public event Action<string, NetworkConnection> OnUserLoggedIn;
       public UnifyServer UnifyServer { get; set; }
 
       public void Start()

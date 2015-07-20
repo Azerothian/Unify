@@ -13,9 +13,9 @@ namespace Unify.Network
 		public ISerialiser Serialiser;
 		public List<INetworkServerModule> NetworkServers {get;set;}
 
-		public event GenericVoidDelegate<NetworkConnection> OnClientConnected;
-		public event GenericVoidDelegate<NetworkConnection> OnClientDisconnected;
-		//public event GenericVoidDelegate<UnifyClient, object> OnClientMessage;
+		public event Action<NetworkConnection> OnClientConnected;
+		public event Action<NetworkConnection> OnClientDisconnected;
+		//public event Action<UnifyClient, object> OnClientMessage;
 		protected List<INetworkServerModule> Servers = new List<INetworkServerModule>();
 		protected List<NetworkConnection> Clients = new List<NetworkConnection>();
 		public NetworkServer()
@@ -23,10 +23,10 @@ namespace Unify.Network
 			//Serialiser = new TSerialiser();
 		}
 
-		public void StartServer<TNetworkServer>(int port) where TNetworkServer : INetworkServerModule, new()
+		public void StartServer<TNetworkServer>(Uri uri) where TNetworkServer : INetworkServerModule, new()
 		{
 			var newServer = new TNetworkServer();
-			newServer.StartListening(port);
+      newServer.StartListening(uri);
 			newServer.OnClientConnected += newServer_OnClientConnected;
 			Servers.Add(newServer);
 

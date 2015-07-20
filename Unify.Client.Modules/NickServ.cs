@@ -12,7 +12,7 @@ namespace Unify.Client.Modules
   public class NicknameModule : IModule
   {
     public string Username { get; set; }
-    public event GenericVoidDelegate<LoginResponse> OnLoginResponse;
+    public event Action<LoginResponse> OnLoginResponse;
 
     public void Login(string username)
     {

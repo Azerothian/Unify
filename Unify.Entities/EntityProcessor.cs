@@ -13,12 +13,12 @@ namespace Unify.Entities
   {
     private List<IEntity> _items;
     private List<EntityThread> _entityThreads;
-    public event GenericVoidDelegate<IEntity> OnEntityProcessed;
-    public event GenericVoidDelegate<IEntity> OnEntityProcessStart;
+    public event Action<IEntity> OnEntityProcessed;
+    public event Action<IEntity> OnEntityProcessStart;
 
 
-    public event GenericVoidDelegate<IEntity> OnEntityCreated;
-    public event GenericVoidDelegate<IEntity> OnEntityRemoved;
+    public event Action<IEntity> OnEntityCreated;
+    public event Action<IEntity> OnEntityRemoved;
 
 
     public int Threads = 4;

@@ -8,9 +8,9 @@ namespace Unify.Interfaces
 {
   public interface IEntityProcessor
   {
-    event GenericVoidDelegate<IEntity> OnEntityCreated;
-    event GenericVoidDelegate<IEntity> OnEntityProcessed;
-    event GenericVoidDelegate<IEntity> OnEntityRemoved;
+    event Action<IEntity> OnEntityCreated;
+    event Action<IEntity> OnEntityProcessed;
+    event Action<IEntity> OnEntityRemoved;
 
     IEnumerable<IEntity> Entities { get; }
 

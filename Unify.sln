@@ -1,21 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.Json", "Unify.Serialiser.Json\Unify.Serialiser.Json.csproj", "{A5B1F2C2-0014-42F8-8A6A-08B63628715B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.Tcp", "Unify.Network.Tcp\Unify.Network.Tcp.csproj", "{70788D70-29C4-49E4-942A-D4CA4815963F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.lidgrenUdp", "Unify.Network.lidgrenUdp\Unify.Network.lidgrenUdp.csproj", "{D595F3A6-6399-405B-92F8-A033D5FEA60D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.Http", "Unify.Network.Http\Unify.Network.Http.csproj", "{47B807EC-13F8-4A97-92AB-14948CE3474A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network", "Unify.Network\Unify.Network.csproj", "{77EEC2C1-C3AB-4424-A25D-82F691470CFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify", "Unify\Unify.csproj", "{2E484762-A800-4148-A4B2-994FA9FA4CB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Server", "Unify.Server\Unify.Server.csproj", "{F12B8277-30F4-4A26-BE9B-54306D0E7CAA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.Protobuf", "Unify.Serialiser.Protobuf\Unify.Serialiser.Protobuf.csproj", "{B0560E6D-B673-4EB9-B480-ACECF189A94C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Messages", "Unify.Messages\Unify.Messages.csproj", "{DFF888AB-AE6B-4F2D-82D1-E7F7243E95C2}"
 EndProject
@@ -40,11 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F46661
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Client.Modules", "Unify.Client.Modules\Unify.Client.Modules.csproj", "{A6F02529-3FB3-4D4D-8863-459812040E05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Kinect.Client", "Unify.Kinect.Client\Unify.Kinect.Client.csproj", "{B637DDB1-978A-4CAE-956E-5D03A30536B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Kinect.Server", "Unify.Kinect.Server\Unify.Kinect.Server.csproj", "{D6453777-4EB1-4E1A-9E0C-7D508CE8EADB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Kinect.Messages", "Unify.Kinect.Messages\Unify.Kinect.Messages.csproj", "{ADF0A7C6-B057-427D-B067-374585E85D64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.WebSockets", "Unify.Network.WebSockets\Unify.Network.WebSockets.csproj", "{6FC88830-A9C7-464E-8756-14B7C37EA88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,14 +52,6 @@ Global
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D595F3A6-6399-405B-92F8-A033D5FEA60D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D595F3A6-6399-405B-92F8-A033D5FEA60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D595F3A6-6399-405B-92F8-A033D5FEA60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D595F3A6-6399-405B-92F8-A033D5FEA60D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47B807EC-13F8-4A97-92AB-14948CE3474A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47B807EC-13F8-4A97-92AB-14948CE3474A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47B807EC-13F8-4A97-92AB-14948CE3474A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47B807EC-13F8-4A97-92AB-14948CE3474A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77EEC2C1-C3AB-4424-A25D-82F691470CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77EEC2C1-C3AB-4424-A25D-82F691470CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77EEC2C1-C3AB-4424-A25D-82F691470CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,10 +64,6 @@ Global
 		{F12B8277-30F4-4A26-BE9B-54306D0E7CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12B8277-30F4-4A26-BE9B-54306D0E7CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12B8277-30F4-4A26-BE9B-54306D0E7CAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0560E6D-B673-4EB9-B480-ACECF189A94C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0560E6D-B673-4EB9-B480-ACECF189A94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0560E6D-B673-4EB9-B480-ACECF189A94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0560E6D-B673-4EB9-B480-ACECF189A94C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DFF888AB-AE6B-4F2D-82D1-E7F7243E95C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFF888AB-AE6B-4F2D-82D1-E7F7243E95C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFF888AB-AE6B-4F2D-82D1-E7F7243E95C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -116,18 +96,10 @@ Global
 		{A6F02529-3FB3-4D4D-8863-459812040E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F02529-3FB3-4D4D-8863-459812040E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F02529-3FB3-4D4D-8863-459812040E05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B637DDB1-978A-4CAE-956E-5D03A30536B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B637DDB1-978A-4CAE-956E-5D03A30536B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B637DDB1-978A-4CAE-956E-5D03A30536B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B637DDB1-978A-4CAE-956E-5D03A30536B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6453777-4EB1-4E1A-9E0C-7D508CE8EADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6453777-4EB1-4E1A-9E0C-7D508CE8EADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6453777-4EB1-4E1A-9E0C-7D508CE8EADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6453777-4EB1-4E1A-9E0C-7D508CE8EADB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADF0A7C6-B057-427D-B067-374585E85D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADF0A7C6-B057-427D-B067-374585E85D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADF0A7C6-B057-427D-B067-374585E85D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADF0A7C6-B057-427D-B067-374585E85D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

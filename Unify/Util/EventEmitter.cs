@@ -59,7 +59,7 @@ namespace Unify.Util
 		//	_actions[message].Add(callback);
 		//}
 
-		public event GenericVoidDelegate<string, object, object> OnEmit;
+		public event Action<string, object, object> OnEmit;
 		public void Emit<TMessage>(string name, TMessage contents)
 		{
 			if(OnEmit != null)

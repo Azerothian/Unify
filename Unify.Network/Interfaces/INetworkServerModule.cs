@@ -9,8 +9,8 @@ namespace Unify.Network.Interfaces
 {
 	public interface INetworkServerModule
 	{
-		event GenericVoidDelegate<INetworkConnectionModule> OnClientConnected;
-		void StartListening(int port);
+		event Action<INetworkConnectionModule> OnClientConnected;
+		void StartListening(Uri uri);
 
 		void Disconnect();
 	}

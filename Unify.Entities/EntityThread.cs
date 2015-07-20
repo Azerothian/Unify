@@ -11,8 +11,8 @@ namespace Unify.Entities
   public class EntityThread : ThreadHelper
   {
     private EntityProcessor _processor;
-    public event GenericVoidDelegate<IEntity> OnEntityProcessed;
-    public event GenericVoidDelegate<IEntity> OnEntityProcessStart;
+    public event Action<IEntity> OnEntityProcessed;
+    public event Action<IEntity> OnEntityProcessStart;
     public IEntity Entity { get; set; }
     public EntityThread(EntityProcessor processor)
     {

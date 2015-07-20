@@ -59,9 +59,17 @@
       <Project>{70788d70-29c4-49e4-942a-d4ca4815963f}</Project>
       <Name>Unify.Network.Tcp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Unify.Network.WebSockets\Unify.Network.WebSockets.csproj">
+      <Project>{6fc88830-a9c7-464e-8756-14b7c37ea88e}</Project>
+      <Name>Unify.Network.WebSockets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unify.Network\Unify.Network.csproj">
       <Project>{77eec2c1-c3ab-4424-a25d-82f691470cfb}</Project>
       <Name>Unify.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Serialiser.Json\Unify.Serialiser.Json.csproj">
+      <Project>{a5b1f2c2-0014-42f8-8a6a-08b63628715b}</Project>
+      <Name>Unify.Serialiser.Json</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unify.Server.Modules\Unify.Server.Modules.csproj">
       <Project>{7ba0268f-925c-4f45-8866-af8b5dc23205}</Project>

@@ -11,13 +11,13 @@ namespace Unify.Network.lidgrenUdp
 	public class UdpServer : INetworkServerModule
 
     {
-			public event Util.GenericVoidDelegate<INetworkConnectionModule> OnClientConnected;
+			public event Action<INetworkConnectionModule> OnClientConnected;
 			NetServer _server;
-			public void StartListening(int port)
+			public void StartListening(Uri uri)
 			{
 				
 				NetPeerConfiguration config = new NetPeerConfiguration("UnifyUdp");
-				config.Port = port;
+				config.Port = uri.Port;
 				_server = new NetServer(config);
 				//_server.
 

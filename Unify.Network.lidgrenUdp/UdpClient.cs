@@ -9,17 +9,17 @@ namespace Unify.Network.lidgrenUdp
 {
 	public class UdpClient : INetworkConnectionModule
 	{
-		public event GenericVoidDelegate OnConnectedEvent;
+		public event Action OnConnectedEvent;
 
-		public event GenericVoidDelegate<byte[]> OnDataReceive;
+		public event Action<byte[]> OnDataReceive;
 
-		public event GenericVoidDelegate<int> OnDataSentEvent;
+		public event Action<int> OnDataSentEvent;
 
-		public event GenericVoidDelegate OnDisconnectingEvent;
+		public event Action OnDisconnectingEvent;
 
-		public event GenericVoidDelegate OnDisconnectedEvent;
+		public event Action OnDisconnectedEvent;
 
-		public void Connect(string ip, int port)
+		public void Connect(Uri uri)
 		{
 			throw new NotImplementedException();
 		}

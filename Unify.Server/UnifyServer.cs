@@ -13,8 +13,8 @@ namespace Unify.Server
     public class UnifyServer
     {
 			private Dictionary<string, string> UserKeys = new Dictionary<string, string>();
-      public event GenericVoidDelegate<Guid, NetworkConnection> OnClientConnected;
-      public event GenericVoidDelegate<Guid, NetworkConnection> OnClientDisconnected;
+      public event Action<Guid, NetworkConnection> OnClientConnected;
+      public event Action<Guid, NetworkConnection> OnClientDisconnected;
 
       public NetworkServer NetworkServer { get; set; }
       //public ICache Cache { get; set; }

@@ -12,9 +12,9 @@ namespace Unify.Client.Modules.Chat
   public class ChatModule : IModule
   {
     public string Username { get; set; }
-    public event GenericVoidDelegate<ChatMessage, NetworkConnection> OnChatMessage;
-    public event GenericVoidDelegate<string, NetworkConnection> OnJoinChannel;
-    public event GenericVoidDelegate<string, IEnumerable<string>, NetworkConnection> OnChannelUserList;
+    public event Action<ChatMessage, NetworkConnection> OnChatMessage;
+    public event Action<string, NetworkConnection> OnJoinChannel;
+    public event Action<string, IEnumerable<string>, NetworkConnection> OnChannelUserList;
 
     public void OnConnected()
     {
