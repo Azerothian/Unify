@@ -40,6 +40,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.JsonFx", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.JsonNet", "Unify.Serialiser.JsonNet\Unify.Serialiser.JsonNet.csproj", "{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.SignalR", "Unify.Network.SignalR\Unify.Network.SignalR.csproj", "{77479EE8-5563-4D41-B92F-0E4CF90A198D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.SignalR35", "Unify.Network.SignalR35\Unify.Network.SignalR35.csproj", "{6EC014B9-136C-4E75-90B8-B8F6E9331B9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +110,14 @@ Global
 		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77479EE8-5563-4D41-B92F-0E4CF90A198D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77479EE8-5563-4D41-B92F-0E4CF90A198D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77479EE8-5563-4D41-B92F-0E4CF90A198D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77479EE8-5563-4D41-B92F-0E4CF90A198D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC014B9-136C-4E75-90B8-B8F6E9331B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC014B9-136C-4E75-90B8-B8F6E9331B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC014B9-136C-4E75-90B8-B8F6E9331B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC014B9-136C-4E75-90B8-B8F6E9331B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

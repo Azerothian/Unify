@@ -24,11 +24,11 @@ namespace Unify.Ui.Controls
     /// <summary>
     /// [0] float - Diff
     /// </summary>
-    public event GenericVoidDelegate<float> OnTouchExpand;
+    public event Action<float> OnTouchExpand;
     /// <summary>
     /// [0] float - Diff
     /// </summary>
-    public event GenericVoidDelegate<float> OnTouchShrink;
+    public event Action<float> OnTouchShrink;
 
     public float TouchDistancePercentage
     {

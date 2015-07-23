@@ -18,10 +18,10 @@ namespace Unify.Ui
 
     }
 
-    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonPressed;
-    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonUp;
-    public event GenericVoidDelegate<int, CancelEventArgs> OnMouseButtonDown;
-    public event GenericVoidDelegate<IEnumerable<TouchAssist>, CancelEventArgs> OnTouch;
+    public event Action<int, CancelEventArgs> OnMouseButtonPressed;
+    public event Action<int, CancelEventArgs> OnMouseButtonUp;
+    public event Action<int, CancelEventArgs> OnMouseButtonDown;
+    public event Action<IEnumerable<TouchAssist>, CancelEventArgs> OnTouch;
 
     void Start()
     {

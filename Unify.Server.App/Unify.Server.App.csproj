@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Unify.Server.App</RootNamespace>
     <AssemblyName>Unify.Server.App</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -57,6 +57,10 @@
     <ProjectReference Include="..\Unify.Messages\Unify.Messages.csproj">
       <Project>{dff888ab-ae6b-4f2d-82d1-e7f7243e95c2}</Project>
       <Name>Unify.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Network.SignalR\Unify.Network.SignalR.csproj">
+      <Project>{77479ee8-5563-4d41-b92f-0e4cf90a198d}</Project>
+      <Name>Unify.Network.SignalR</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unify.Network.Tcp\Unify.Network.Tcp.csproj">
       <Project>{70788d70-29c4-49e4-942a-d4ca4815963f}</Project>

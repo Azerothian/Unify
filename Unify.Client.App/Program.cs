@@ -7,6 +7,8 @@ using Unify.Client.Modules.Chat;
 using Unify.Client.Modules.Entities;
 using Unify.Messages.NickServ;
 using Unify.Network;
+using Unify.Network.SignalR;
+using Unify.Network.SignalR35;
 using Unify.Network.Tcp;
 using Unify.Network.WebSockets;
 using Unify.Serialiser.JsonNet;
@@ -33,6 +35,8 @@ namespace Unify.Client.App
       networkClient.SetSerialiser<JsonNetSerialiser>();
       Console.WriteLine("1. TCP");
       Console.WriteLine("2. WS");
+      Console.WriteLine("3. SR");
+      Console.WriteLine("4. SR35");
       var uri = "";
       switch(Console.ReadKey().Key)
       {
@@ -43,6 +47,14 @@ namespace Unify.Client.App
         case ConsoleKey.D2:
           networkClient.AddNetworkClient<WSClient>();
           uri = "ws://127.0.0.1:6321/";
+          break;
+        case ConsoleKey.D3:
+          networkClient.AddNetworkClient<SRClient>();
+          uri = "http://127.0.0.1:6323/";
+          break;
+        case ConsoleKey.D4:
+          networkClient.AddNetworkClient<SR35Client>();
+          uri = "http://127.0.0.1:6323/";
           break;
       }
 

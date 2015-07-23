@@ -6,6 +6,7 @@ using Unify.Cache.Internal;
 using Unify.Entities;
 using Unify.Network;
 using Unify.Network.Serialiser;
+using Unify.Network.SignalR;
 using Unify.Network.Tcp;
 using Unify.Network.WebSockets;
 using Unify.Serialiser.Json;
@@ -40,8 +41,10 @@ namespace Unify.Server.ConApp
       //_server.SetCache<InternalCache>();
 
       _server.Start();
+      _netServer.StartServer<SRServer>(new Uri("http://0.0.0.0:6323"));
       _netServer.StartServer<TcpServer>(new Uri("tcp://0.0.0.0:6322"));
       _netServer.StartServer<WSServer>(new Uri("ws://127.0.0.1:6321"));
+
       Console.WriteLine("Press the enter key to quit..");
       Console.ReadLine();
 
