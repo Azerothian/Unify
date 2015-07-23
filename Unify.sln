@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.Json", "Unify.Serialiser.Json\Unify.Serialiser.Json.csproj", "{A5B1F2C2-0014-42F8-8A6A-08B63628715B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.Tcp", "Unify.Network.Tcp\Unify.Network.Tcp.csproj", "{70788D70-29C4-49E4-942A-D4CA4815963F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network", "Unify.Network\Unify.Network.csproj", "{77EEC2C1-C3AB-4424-A25D-82F691470CFB}"
@@ -38,16 +36,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Client.Modules", "Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Network.WebSockets", "Unify.Network.WebSockets\Unify.Network.WebSockets.csproj", "{6FC88830-A9C7-464E-8756-14B7C37EA88E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.JsonFx", "Unify.Serialiser.JsonFx\Unify.Serialiser.JsonFx.csproj", "{A5B1F2C2-0014-42F8-8A6A-08B63628715B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unify.Serialiser.JsonNet", "Unify.Serialiser.JsonNet\Unify.Serialiser.JsonNet.csproj", "{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70788D70-29C4-49E4-942A-D4CA4815963F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,6 +98,14 @@ Global
 		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FC88830-A9C7-464E-8756-14B7C37EA88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B1F2C2-0014-42F8-8A6A-08B63628715B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1DC4A89-3BB4-4D9C-AA77-5597C89DF4F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

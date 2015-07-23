@@ -69,9 +69,13 @@
       <Project>{77eec2c1-c3ab-4424-a25d-82f691470cfb}</Project>
       <Name>Unify.Network</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unify.Serialiser.Json\Unify.Serialiser.Json.csproj">
+    <ProjectReference Include="..\Unify.Serialiser.JsonFx\Unify.Serialiser.JsonFx.csproj">
       <Project>{a5b1f2c2-0014-42f8-8a6a-08b63628715b}</Project>
-      <Name>Unify.Serialiser.Json</Name>
+      <Name>Unify.Serialiser.JsonFx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Serialiser.JsonNet\Unify.Serialiser.JsonNet.csproj">
+      <Project>{c1dc4a89-3bb4-4d9c-aa77-5597c89df4f5}</Project>
+      <Name>Unify.Serialiser.JsonNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unify\Unify.csproj">
       <Project>{2e484762-a800-4148-a4b2-994fa9fa4cb3}</Project>

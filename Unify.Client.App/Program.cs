@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Unify.Client.Modules;
 using Unify.Client.Modules.Chat;
 using Unify.Client.Modules.Entities;
 using Unify.Messages.NickServ;
 using Unify.Network;
-using Unify.Network.Serialiser;
 using Unify.Network.Tcp;
 using Unify.Network.WebSockets;
-using Unify.Serialiser.Json;
+using Unify.Serialiser.JsonNet;
 using Unify.Util;
 
 namespace Unify.Client.App
@@ -32,7 +30,7 @@ namespace Unify.Client.App
       var username = Console.ReadLine();
       Log.Info("Connecting to the Server...");
       NetworkConnection networkClient = new NetworkConnection();
-      networkClient.SetSerialiser<JsonSerialiser>();
+      networkClient.SetSerialiser<JsonNetSerialiser>();
       Console.WriteLine("1. TCP");
       Console.WriteLine("2. WS");
       var uri = "";

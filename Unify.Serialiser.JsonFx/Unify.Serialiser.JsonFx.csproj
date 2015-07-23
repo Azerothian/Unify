@@ -7,8 +7,8 @@
     <ProjectGuid>{A5B1F2C2-0014-42F8-8A6A-08B63628715B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unify.Serialiser.Json</RootNamespace>
-    <AssemblyName>Unify.Serialiser.Json</AssemblyName>
+    <RootNamespace>Unify.Serialiser.JsonFx</RootNamespace>
+    <AssemblyName>Unify.Serialiser.JsonFx</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonSerialiser.cs" />
+    <Compile Include="JsonFxSerialiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

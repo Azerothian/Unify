@@ -9,6 +9,7 @@ using Unify.Network.Serialiser;
 using Unify.Network.Tcp;
 using Unify.Network.WebSockets;
 using Unify.Serialiser.Json;
+using Unify.Serialiser.JsonNet;
 using Unify.Server.Modules;
 using Unify.Server.Modules.Entities;
 using Unify.Util;
@@ -26,7 +27,7 @@ namespace Unify.Server.ConApp
 
       Log.OnLog += Log_OnLog;
       NetworkServer _netServer = new NetworkServer();
-      _netServer.SetSerialiser<JsonSerialiser>();
+      _netServer.SetSerialiser<JsonNetSerialiser>();
 
       UnifyServer _server = new UnifyServer(_netServer);
 

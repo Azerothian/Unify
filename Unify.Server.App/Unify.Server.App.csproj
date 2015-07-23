@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,6 +11,7 @@
     <AssemblyName>Unify.Server.App</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Unify.Server.ConApp.Program</StartupObject>
@@ -67,9 +70,13 @@
       <Project>{77eec2c1-c3ab-4424-a25d-82f691470cfb}</Project>
       <Name>Unify.Network</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unify.Serialiser.Json\Unify.Serialiser.Json.csproj">
+    <ProjectReference Include="..\Unify.Serialiser.JsonFx\Unify.Serialiser.JsonFx.csproj">
       <Project>{a5b1f2c2-0014-42f8-8a6a-08b63628715b}</Project>
-      <Name>Unify.Serialiser.Json</Name>
+      <Name>Unify.Serialiser.JsonFx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unify.Serialiser.JsonNet\Unify.Serialiser.JsonNet.csproj">
+      <Project>{c1dc4a89-3bb4-4d9c-aa77-5597c89df4f5}</Project>
+      <Name>Unify.Serialiser.JsonNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unify.Server.Modules\Unify.Server.Modules.csproj">
       <Project>{7ba0268f-925c-4f45-8866-af8b5dc23205}</Project>
@@ -83,6 +90,9 @@
       <Project>{2e484762-a800-4148-a4b2-994fa9fa4cb3}</Project>
       <Name>Unify</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

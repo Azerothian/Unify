@@ -1,13 +1,10 @@
 ﻿using JsonFx.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Unify.Network.Interfaces;
 
 namespace Unify.Serialiser.Json
 {
-  public class JsonSerialiser : ISerialiser
+  public class JsonFxSerialiser : ISerialiser
   {
 
     public class JsonContainer // had to write proxy container to declare item type for proper deserialisation
