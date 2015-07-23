@@ -9,7 +9,7 @@ namespace Unify.Ui.Controls
 {
   public class Textbox : Control
   {
-    public event GenericVoidDelegate<string> OnEnterKeyPressed;
+    public event Action<string> OnEnterKeyPressed;
     GUIStyle _style = null;
     public GUIStyle Style
     {
