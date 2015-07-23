@@ -11,8 +11,7 @@ namespace Unify.Network
 	public class PacketProcessor : ThreadHelper
 	{
 
-
-		private MemoryManager _dataStream = new MemoryManager();
+    private MemoryManager _dataStream = new MemoryManager();
 		public event Action<Packet> OnPacketFound;
 
 		Queue<byte[]> _dataToWrite = new Queue<byte[]>();
@@ -127,10 +126,6 @@ namespace Unify.Network
 
 		public static byte[] CreatePacket(string name, byte[] data)
 		{
-			//var packet = new PacketData();
-			//	packet.Initialise();
-			//packet.SetHeaderName(name);
-			//	packet.SetPacket(data);
 			return GetPacketDataBytes(name, data);
 		}
 		static byte[] GetPacketDataBytes(string name, byte[] data)

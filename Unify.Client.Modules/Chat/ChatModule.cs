@@ -47,20 +47,21 @@ namespace Unify.Client.Modules.Chat
       UnifyClient.Connection.On<ChatMessage>("chat.message",
         (NetworkConnection connection, ChatMessage response) =>
           {
-						if (OnChatMessage != null)
+            if (OnChatMessage != null)
             {
               OnChatMessage(response, connection);
             }
           });
     }
-    public void SendMessage(string channel,  string message, params string[] formatObjs)
+    public void SendMessage(string channel, string message, params string[] formatObjs)
     {
       UnifyClient.Connection.Emit<ChatMessage>(
-        "chat.message", 
-        new ChatMessage() {
+        "chat.message",
+        new ChatMessage()
+        {
           From = Username,
-          Target = channel, 
-          ChatEventType = ChatEventType.Message, 
+          Target = channel,
+          ChatEventType = ChatEventType.Message,
           Message = string.Format(message, formatObjs)
         });
     }
